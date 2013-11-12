@@ -1,0 +1,27 @@
+<% provide(:title, 'Search') %>
+
+<%= render 'search' %>
+<% if !params[:theme].nil? %>
+  <h1>Result</h1>
+  <h3>
+  	Find by <%= params[:theme] %>
+  </h3>
+<% end %>
+
+<% if !@posts.nil? %>
+  <ul class="users">
+    <%= render @posts %>
+  </ul>
+<% end %>
+
+<% if !@tags.nil? %>
+  <ul class="tags">
+    <%= render @tags %>
+  </ul>
+<% end %>
+
+<% if !@users.nil? %>
+  <ul class="users">
+    <%= render @users %>
+  </ul>
+<% end %>

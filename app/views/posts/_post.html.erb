@@ -1,0 +1,30 @@
+<li>
+  <% if request.original_url.scan('user').empty? %>
+    <a href="<%= user_path(post.user) %>">
+      <%= gravatar_for post.user, size: 52 %>
+    </a>
+    <%= post.user.name %>
+    <br>
+  <%end %>
+  <h3>
+    <span class="post_title" >
+      <%= link_to post.title, post_path(post[:id]),  {:style=>'color:#000000;' } %>
+     </span>
+  </h3>
+	<h4>
+    <span class="content">
+      <% if request.original_url.scan('user').empty? %>
+        <%= simple_format(post.content) %>
+      <% else %>
+        <%= simple_format(post.content.truncate(300)) %>
+      <% end %>
+    </span>
+	</h4>  
+  Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t),{:style=>'color:#000000;' } }.join(', ') %>
+  <br>
+  
+ 	<span class="timestamps">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+  <%= pluralize(post.comments.count, "comment") if post.comments.count != 0 %>
+</li>

@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      post:
+        tag_list: "Tag format '#tagname_1, #tagname_2..' your tag "

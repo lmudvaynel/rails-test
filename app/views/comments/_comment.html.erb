@@ -1,0 +1,16 @@
+<li>
+  <h3> 
+    <span class="post_title" >
+      <%= link_to comment.post.title, post_path(comment.post_id),  {:style=>'color:#000000;' } %>
+    </span>
+  </h3>
+  <h4>
+    <span class="content">
+      Comment:<%= simple_format(comment.content) %>
+    </span>
+	</h4>
+ 	<span class="timestamps">
+      Posted <%= time_ago_in_words(comment.created_at) %> ago.
+  </span>
+
+</li>

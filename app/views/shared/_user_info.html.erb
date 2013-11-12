@@ -1,0 +1,15 @@
+<section>
+<a href="<%= user_path(current_user) %>">
+  <%= gravatar_for current_user %>
+</a>
+<h1>
+  <%= link_to current_user.name, current_user, {:style=>'color:#000000;' }  %>
+</h1>
+</section>
+<section>
+<span>
+  <%= pluralize(current_user.posts.count, "post") %>
+  <div></div>
+  <%= pluralize(current_user.comments.count, "comment") %>
+</span>
+</section>

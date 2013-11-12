@@ -1,0 +1,66 @@
+<% provide(:title, @post.title) %>
+<ol class="posts">
+  <li>
+    <div class = "layer1">
+    <section>
+      <h4>
+        <%= gravatar_for @user, size:52%>
+        <%= link_to @user.name, @user, {:style=>'color:#000000;' } %>
+      </h4>
+    </section>
+  </div>
+    <h3>
+      <span class="post_title" >
+        <%= @post.title %>
+      </span>
+    </h3>
+    <h4>
+      <span class="content">
+        <%= simple_format(@post.content) %>
+      </span>
+    </h4>
+  </li>
+</ol>
+  Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t),{:style=>'color:#000000;' } }.join(', ') %>
+  <br>
+
+<div class="timestamps">
+  Posted <%= @post.created_at %>
+</div>
+
+<% if @post.comments.count!=0 %>
+  <h2>Comments</h2>
+  <% @post.comments.order('created_at ASC') %>
+  <% @post.comments.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <% if comment.user_id.nil? %>
+      <% @comment_user = User.new(name: "Anonymus", email: "my.blog.sitl@gmail.com")%>
+    <% else %>
+      <% @comment_user = User.find_by_id(comment.user_id) %>
+    <% end %>
+    <h4>
+      <%= gravatar_for @comment_user, size:52%>
+      <%= link_to @comment_user.name, @comment_user, {:style=>'color:#000000;' } %>
+    </h4>
+    <%= comment.content %>
+    <p>
+      Posted <%= time_ago_in_words(comment.created_at) %> ago.
+    </p>
+  </p>
+<% end %>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content , cols: 20, rows: 10 %>
+  </p>
+  <p>
+    <%= f.submit "Add comment", class: "btn btn-large btn-primary" %>
+  </p>
+<% end %>
+
+
+

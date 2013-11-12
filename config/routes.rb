@@ -1,4 +1,23 @@
 RailsTest::Application.routes.draw do
+  get 'tags/:tag', to: 'posts#index', as: :tag
+  
+  resources :users  do
+    resources :comments
+  end
+  
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :posts do
+    resources :comments
+  end
+  resources :search
+  root to: 'static_pages#home'
+
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/signup',  to: 'users#new'
+  match '/help',    to: 'static_pages#help'
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

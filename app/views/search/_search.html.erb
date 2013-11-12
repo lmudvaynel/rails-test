@@ -1,0 +1,10 @@
+<%= form_tag search_index_path , :method => "get" do %>
+	<%= text_field_tag :q, params[:q] %>
+	<% [ 'Post content', 'Tag', 'User name' ].each do |theme| %>
+	 <aside class="span2">
+       	<%= radio_button_tag 'theme', theme, @theme == theme %>
+       	<%= label_tag "theme_#{theme}", theme.humanize %>
+     </aside>
+    <% end %>
+	<%= submit_tag "Search", :name => nil %>
+<% end %>

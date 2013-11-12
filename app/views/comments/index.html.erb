@@ -1,0 +1,24 @@
+<% provide(:title, 'comments')  %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <a href="<%= user_path(@user) %>">
+        <%= gravatar_for @user %>
+      </a>
+      <h1>
+        <%= link_to @user.name, @user, {:style=>'color:#000000;' }  %>
+      </h1>
+    </section>
+
+    <section>
+
+    </section>
+  </aside>
+  <div class="span8">
+		<ul class="users">
+      <h3>User comments</h3>
+    	<%= render @comments.order("created_at DESC") %>
+    </ul>
+  </div>
+</div>
