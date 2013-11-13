@@ -3,9 +3,9 @@
   <li>
     <div class = "layer1">
     <section>
-      <h4>
+      <h4 class="black_link" >
         <%= gravatar_for @user, size:52%>
-        <%= link_to @user.name, @user, {:style=>'color:#000000;' } %>
+        <%= link_to @user.name, @user %>
       </h4>
     </section>
   </div>
@@ -21,7 +21,9 @@
     </h4>
   </li>
 </ol>
-  Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t),{:style=>'color:#000000;' } }.join(', ') %>
+<div class="black_link" >
+  Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+</div>
   <br>
 
 <div class="timestamps">
