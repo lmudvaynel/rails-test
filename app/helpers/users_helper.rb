@@ -7,4 +7,12 @@ module UsersHelper
   		gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
   		image_tag(gravatar_url, alt: user.name, class: "gravatar")
 	end
+
+	def guest_user
+		@guest_user = User.new(name: "Anonymus", email: "my.blog.sitl@gmail.com")
+	end
+
+	def blog_user(comment)
+		@blog_user = User.find_by_id(comment.user_id)
+	end
 end

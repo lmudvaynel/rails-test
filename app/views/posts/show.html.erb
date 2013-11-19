@@ -37,13 +37,13 @@
   <p>
     <strong>Comment:</strong>
     <% if comment.user_id.nil? %>
-      <% @comment_user = User.new(name: "Anonymus", email: "my.blog.sitl@gmail.com")%>
+      <% @comment_user = guest_user%>
     <% else %>
-      <% @comment_user = User.find_by_id(comment.user_id) %>
+      <% @comment_user = blog_user(comment) %>
     <% end %>
-    <h4>
+    <h4 class="black_link">
       <%= gravatar_for @comment_user, size:52%>
-      <%= link_to @comment_user.name, @comment_user, {:style=>'color:#000000;' } %>
+      <%= link_to @comment_user.name, @comment_user%>
     </h4>
     <%= comment.content %>
     <p>
