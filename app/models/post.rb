@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   def self.search(search)
   	if search
    	  where("content LIKE ?", "%#{search}%")
- 	else
+ 	  else
    	  find(:all)
   	end
   end

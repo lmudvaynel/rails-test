@@ -2,13 +2,13 @@
 <ol class="posts">
   <li>
     <div class = "layer1">
-    <section>
-      <h4 class="black_link" >
-        <%= gravatar_for @user, size:52%>
-        <%= link_to @user.name, @user %>
-      </h4>
-    </section>
-  </div>
+      <section>
+        <h4 class="black_link" >
+          <%= gravatar_for @user, size:52%>
+          <%= link_to @user.name, @user %>
+        </h4>
+      </section>
+    </div>
     <h3>
       <span class="post_title" >
         <%= @post.title %>
@@ -24,8 +24,7 @@
 <div class="black_link" >
   Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 </div>
-  <br>
-
+<br>
 <div class="timestamps">
   Posted <%= @post.created_at %>
 </div>
@@ -34,23 +33,23 @@
   <h2>Comments</h2>
   <% @post.comments.order('created_at ASC') %>
   <% @post.comments.each do |comment| %>
-  <p>
-    <strong>Comment:</strong>
-    <% if comment.user_id.nil? %>
-      <% @comment_user = guest_user%>
-    <% else %>
-      <% @comment_user = blog_user(comment) %>
-    <% end %>
-    <h4 class="black_link">
-      <%= gravatar_for @comment_user, size:52%>
-      <%= link_to @comment_user.name, @comment_user%>
-    </h4>
-    <%= comment.content %>
     <p>
-      Posted <%= time_ago_in_words(comment.created_at) %> ago.
+      <strong>Comment:</strong>
+      <% if comment.user_id.nil? %>
+        <% @comment_user = guest_user%>
+      <% else %>
+        <% @comment_user = blog_user(comment) %>
+      <% end %>
+      <h4 class="black_link">
+        <%= gravatar_for @comment_user, size:52%>
+        <%= link_to @comment_user.name, @comment_user%>
+      </h4>
+      <%= comment.content %>
+      <p>
+        Posted <%= time_ago_in_words(comment.created_at) %> ago.
+      </p>
     </p>
-  </p>
-<% end %>
+  <% end %>
 <% end %>
 
 <h2>Add a comment:</h2>

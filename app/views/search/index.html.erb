@@ -8,20 +8,14 @@
   </h3>
 <% end %>
 
-<% if !@posts.nil? %>
-  <ul class="users">
-    <%= render @posts %>
-  </ul>
-<% end %>
+<ul class="users">
+  <%= render @posts if !@posts.nil? %>
+</ul>
 
-<% if !@tags.nil? %>
-  <ul class="tags">
-    <%= render @tags %>
-  </ul>
-<% end %>
+<ul class="tags">
+  <%= render @tags if !@tags.nil? %>
+</ul>
 
-<% if !@users.nil? %>
-  <ul class="users">
-    <%= render @users %>
-  </ul>
-<% end %>
+<ul class="users">
+  <%= render @users if !@users.nil? %>
+</ul>

@@ -9,12 +9,16 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 gem 'acts-as-taggable-on'   #Tags
 
+gem 'faker', '1.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
+  gem 'guard-rspec', '1.2.1'
+  gem 'guard-spork', :github => 'guard/guard-spork'
+  gem 'spork', '0.9.2'
 end
 
 # Gems used only for assets and not required
@@ -38,7 +42,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
