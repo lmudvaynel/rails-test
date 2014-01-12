@@ -1,15 +1,16 @@
-<li>
-  <h3> 
-    <span class="black_link" >
-      <%= link_to comment.post.title, post_path(comment.post_id) %>
-    </span>
-  </h3>
-  <h4>
-    <span class="content">
-      Comment:<%= simple_format(comment.content) %>
-    </span>
-	</h4>
- 	<span class="timestamps">
+<p>
+  <strong>Comment:</strong>
+  <% if comment.user_id.nil? %>
+    <% @comment_user = guest_user%>
+  <% else %>
+    <% @comment_user = blog_user(comment) %>
+  <% end %>
+  <h4 class="black_link">
+    <%= gravatar_for @comment_user, size:52%>
+    <%= link_to @comment_user.name, @comment_user%>
+  </h4>
+  <%= comment.content %>
+  <p>
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
-  </span>
-</li>
+  </p>
+</p>

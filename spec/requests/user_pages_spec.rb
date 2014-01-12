@@ -8,7 +8,6 @@ describe "User pages" do
     before { visit signup_path }
 
     it { should have_selector('title', text: full_title('Sign Up')) }
-    it { should respond_to(:remember_token) }
   end
 
   describe "profile page" do
@@ -43,11 +42,14 @@ describe "User pages" do
   end
 
   describe "edit" do
-    let(:user) { FactoryGirl.create(:user) }
-    before { visit edit_user_path(user) }
+    let(:user) { FactoryGirl.create(:user) } 
+    before do
+      sign_in user
+      visit edit_user_path(user)
+    end
 
     describe "page" do
-      it { should have_selector('title', text: "Edit user") }
+      it { should have_selector('title', text: full_title('Edit user')) }
     end
 
     describe "with valid information" do

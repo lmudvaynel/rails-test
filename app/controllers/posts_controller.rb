@@ -31,12 +31,12 @@ class PostsController < ApplicationController
     @user = @post.user
   end
 
-  def index
+  def indexl
     if params[:tag]
-      @posts = Post.paginate(page: params[:page],:per_page => 5).tagged_with(params[:tag]).search(params[:q])
+      @posts = Post.paginate(page: params[:page],per_page: 5).tagged_with(params[:tag]).search(params[:q])
     else
-      @posts = Post.paginate(page: params[:page],:per_page => 5).search(params[:q])
-    #@posts = Post.paginate(page: params[:page], :per_page => 15)
+      @posts = Post.paginate(page: params[:page],per_page: 5).search(params[:q])
+     #@posts = Post.paginate(page: params[:page], :per_page => 15)
     end
   end
 end

@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe User do
 
-  	before do
-  		 @user = User.new(name: "Example User", email: "user@example.com",
+  before do
+  	@user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
 	end
-  	subject { @user }
+  
+  subject { @user }
 
  	it { should respond_to(:name) }
  	it { should respond_to(:email) }
@@ -17,7 +18,7 @@ describe User do
 
  	it { should be_valid }
 
- 	describe "When name is nit present" do
+ 	describe "When name is not present" do
  		before { @user.name = " " }
  		it { should_not be_valid }
 	end
@@ -27,7 +28,7 @@ describe User do
   		it { should_not be_valid }
  	end
 
-	describe "When name is nit present" do
+	describe "When name is not present" do
  		before { @user.name = "a"*56 }
  		it { should_not be_valid }
 	end

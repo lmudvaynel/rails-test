@@ -11,8 +11,12 @@ class Post < ActiveRecord::Base
 
   default_scope order: 'posts.created_at DESC'
 
+  validates :title, length: { minimum: 3,  maximum: 100}, presence: true
+
+  validates :content, length: { minimum: 10}, presence: true
+
   VALID_TAG_REGEX = /\A#[a-zA-Z\d]+([a-zA-Z\d]|(, #))+\z/i
-  validates :tag_list, format: { with: VALID_TAG_REGEX }
+  validates :tag_list, format: { with: VALID_TAG_REGEX }, presence: true
 
   def self.search(search)
   	if search

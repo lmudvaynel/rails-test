@@ -31,37 +31,11 @@
 
 <% if @post.comments.count!=0 %>
   <h2>Comments</h2>
-  <% @post.comments.order('created_at ASC') %>
-  <% @post.comments.each do |comment| %>
-    <p>
-      <strong>Comment:</strong>
-      <% if comment.user_id.nil? %>
-        <% @comment_user = guest_user%>
-      <% else %>
-        <% @comment_user = blog_user(comment) %>
-      <% end %>
-      <h4 class="black_link">
-        <%= gravatar_for @comment_user, size:52%>
-        <%= link_to @comment_user.name, @comment_user%>
-      </h4>
-      <%= comment.content %>
-      <p>
-        Posted <%= time_ago_in_words(comment.created_at) %> ago.
-      </p>
-    </p>
-  <% end %>
+<%= render @post.comments %>
 <% end %>
 
 <h2>Add a comment:</h2>
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <p>
-    <%= f.label :content %>
-    <%= f.text_area :content , cols: 20, rows: 10 %>
-  </p>
-  <p>
-    <%= f.submit "Add comment", class: "btn btn-large btn-primary" %>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
 
 
 
