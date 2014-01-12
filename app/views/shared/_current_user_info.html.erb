@@ -1,0 +1,18 @@
+<section>
+	
+	<a href="<%= user_path(current_user) %>">
+  	<%= gravatar_for current_user %>
+	</a>
+	<h1 class="black_link" >
+  	<%= link_to current_user.name, current_user %>
+	</h1>
+</section>
+<section>
+	<span>
+  	<%= pluralize(current_user.posts.count, "post") %>
+    <div class="black_link" >
+  		<%= link_to (pluralize(current_user.comments.count, "comment")),user_comments_path(current_user) %>
+  	</div>
+	</span>
+
+</section>
