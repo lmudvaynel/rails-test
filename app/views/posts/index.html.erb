@@ -1,9 +1,17 @@
-<% provide(:title, 'All posts') %>
-<h1>All posts</h1>
+<% if params[:tag] %>
+	<% provide(:title,'Tag '+params[:tag]) %>
+	<h1>
+		<%= params[:tag] %>
+	</h1>
+<% else %>
+	<% provide(:title, 'All posts') %>
+	<h1>All posts</h1>
+<% end %>
+
 <%= render 'search' %>
 
 <%= will_paginate %>
-<ul class="users">
+<ul class="posts">
   <%= render @posts %>
 </ul>
 <%= will_paginate %>
