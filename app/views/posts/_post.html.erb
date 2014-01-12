@@ -13,20 +13,19 @@
   </h3>
 	<h4>
     <span class="content">
-      <% if request.original_url.scan('user').empty? %>
-        <%= simple_format(post.content) %>
-      <% else %>
-        <%= simple_format(post.content.truncate(300)) %>
-      <% end %>
+      <%= simple_format(wrap(post.content.truncate(300))) %>
     </span>
 	</h4>  
-  <div class="black_link" >
-    Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-  </div>
-  <br>
-  
+  <% if !post.tag_list.blank? %>
+    <div class="black_link" >
+      Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+    </div>
+    <br>
+  <% end %>
  	<span class="timestamps">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
   <%= pluralize(post.comments.count, "comment") if post.comments.count != 0 %>
+  <%= link_to "delete", post, method: :delete,
+                                  data: { confirm: "You sure?" } %>
 </li>

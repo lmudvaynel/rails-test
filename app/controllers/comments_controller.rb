@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(params[:comment])
     redirect_to post_path(@post)
+    if !@comment.save
+      flash[:error] = "Comment cant be blank"
+    end
   end
 
   def index
@@ -14,6 +17,6 @@ class CommentsController < ApplicationController
   def destroy
     Comment.find(params[:id]).destroy
     flash[:success]="Comment destroyed"
-    redirect_to post_path(@post)
+    redirect_to post_path(params[:post_id])
   end
 end

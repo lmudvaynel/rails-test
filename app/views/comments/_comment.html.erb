@@ -7,10 +7,14 @@
   <% end %>
   <h4 class="black_link">
     <%= gravatar_for @comment_user, size:52%>
-    <%= link_to @comment_user.name, @comment_user%>
+    <%= link_to @comment_user.name, @comment_user %>
   </h4>
   <%= comment.content %>
   <p>
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
   </p>
+  <% if signed_in? && current_user.id==comment.user_id %>
+  <%= link_to "delete", [@post, comment], method: :delete,
+                                  data: { confirm: "You sure?" } %>
+<%end%>
 </p>

@@ -16,22 +16,27 @@
     </h3>
     <h4>
       <span class="content">
-        <%= simple_format(@post.content) %>
+        <%= simple_format(wrap(@post.content)) %>
       </span>
     </h4>
   </li>
 </ol>
-<div class="black_link" >
-  Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-</div>
-<br>
+
+<% if !@post.tag_list.blank? %>
+  <div class="black_link" >
+    Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+  </div>
+  <br>
+<% end %>
+
 <div class="timestamps">
   Posted <%= @post.created_at %>
 </div>
 
 <% if @post.comments.count!=0 %>
   <h2>Comments</h2>
-  <%= render @post.comments %>
+  <%= render @comments %>
+  <%= will_paginate @comments%>
 <% end %>
 
 <h2>Add a comment:</h2>

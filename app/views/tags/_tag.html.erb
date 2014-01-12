@@ -1,3 +1,5 @@
+<% if !tag.name.blank? %>
 <h3 class="black_link" >
   <%= link_to tag.name, tag_path(tag.name) %>
 </h3>
+<% end %>

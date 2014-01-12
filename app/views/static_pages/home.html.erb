@@ -2,7 +2,7 @@
 <% if signed_in? %>
   <div class="row">
     <aside class="span4">
-      <%= render 'shared/user_info' %>
+      <%= render 'shared/current_user_info' %>
       <section>
         <%= link_to "Create post", new_post_path, class: "btn btn-primary" %>
       </section>

@@ -29,8 +29,8 @@ describe Post do
 	end
 
 	describe "When tags is not present" do
-	 	before { @post.tag_list = " " }
-	 	it { should_not be_valid }
+	 	before { @post.tag_list = "" }
+	 	it { should be_valid }
 	end
 
 	describe "When user_id is nil" do

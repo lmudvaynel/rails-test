@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   default_scope order: 'posts.created_at DESC'
 
@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   validates :content, length: { minimum: 10}, presence: true
 
   VALID_TAG_REGEX = /\A#[a-zA-Z\d]+([a-zA-Z\d]|(, #))+\z/i
-  validates :tag_list, format: { with: VALID_TAG_REGEX }, presence: true
+  validates :tag_list, format: { with: VALID_TAG_REGEX }, allow_blank: true
 
   def self.search(search)
   	if search

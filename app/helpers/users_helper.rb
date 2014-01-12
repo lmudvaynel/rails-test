@@ -13,6 +13,6 @@ module UsersHelper
 	end
 
 	def blog_user(comment)
-		@blog_user = User.find(comment.user_id)
+		@blog_user = comment.user
 	end
 end

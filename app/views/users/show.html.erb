@@ -1,23 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <a href="<%= user_path(@user) %>">
-        <%= gravatar_for @user %>
-      </a>
-      <h1 class="black_link" >
-        <%= link_to @user.name, @user %>
-      </h1>
-    </section>
-    <section>
-      <span>
-        <%= pluralize(@user.posts.count, "post") %>
-        <div class="black_link" >
-          <%= link_to (pluralize(@user.comments.count, "comment")),user_comments_path(@user) %>
-        </div>
-      </span>
-    </section>
-  </aside>
+  <%= render 'shared/user_info' %>
   <div class="span8">
     <ol class="posts">
       <%= render @posts if @user.posts.any? %>
