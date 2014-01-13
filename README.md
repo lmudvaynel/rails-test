@@ -1,5 +1,6 @@
 Демко Артем
-http://sheltered-bastion-2498.herokuapp.com/
+
+http://salty-tor-9140.herokuapp.com/
 
 
 #Ruby on Rails, тестовое задание.
