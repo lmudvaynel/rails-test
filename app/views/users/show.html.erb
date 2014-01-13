@@ -2,6 +2,7 @@
 <div class="row">
   <%= render 'shared/user_info' %>
   <div class="span8">
+  	<h3>User posts</h3>
     <ol class="posts">
       <%= render @posts if @user.posts.any? %>
     </ol>

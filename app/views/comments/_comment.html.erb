@@ -4,17 +4,27 @@
     <% @comment_user = guest_user%>
   <% else %>
     <% @comment_user = blog_user(comment) %>
+  <% end %> 
+
+  <% if !request.original_url.scan('user').empty? %>
+    <div class="black_link">
+      Post title: <%= link_to comment.post.title, post_path(comment.post_id)  %>
+      <p>
+        Comment: <%= comment.content %> 
+      </p>
+    </div>
+  <% else %>
+    <h4 class="black_link">
+      <%= gravatar_for @comment_user, size:52 %>
+      <%= link_to @comment_user.name, @comment_user %>
+    </h4>
+    <%= comment.content %> 
   <% end %>
-  <h4 class="black_link">
-    <%= gravatar_for @comment_user, size:52%>
-    <%= link_to @comment_user.name, @comment_user %>
-  </h4>
-  <%= comment.content %>
-  <p>
+  <p class="timestamps">
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
   </p>
   <% if signed_in? && current_user.id==comment.user_id %>
-  <%= link_to "delete", [@post, comment], method: :delete,
+  <%= link_to "delete", [comment.post, comment], method: :delete,
                                   data: { confirm: "You sure?" } %>
-<%end%>
+  <%end%>
 </p>
