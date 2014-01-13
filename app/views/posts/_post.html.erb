@@ -3,7 +3,9 @@
     <a href="<%= user_path(post.user) %>">
       <%= gravatar_for post.user, size: 52 %>
     </a>
-    <%= post.user.name %>
+    <h3>
+      <%= post.user.name %>
+    </h3>
     <br>
   <%end %>
   <h3>
@@ -13,7 +15,7 @@
   </h3>
 	<h4>
     <span class="content">
-      <%= simple_format(wrap(post.content.truncate(300))) %>
+      <%= simple_format((post.content.truncate(300))) %>
     </span>
 	</h4>  
   <% if !post.tag_list.blank? %>
@@ -26,6 +28,9 @@
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
   <%= pluralize(post.comments.count, "comment") if post.comments.count != 0 %>
-  <%= link_to "delete", post, method: :delete,
+
+  <% if signed_in? && current_user.id==post.user_id %>
+    <%= link_to "delete", post, method: :delete,
                                   data: { confirm: "You sure?" } %>
+  <% end %>
 </li>

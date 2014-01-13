@@ -40,4 +40,19 @@ class PostsController < ApplicationController
      #@posts = Post.paginate(page: params[:page], :per_page => 15)
     end
   end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(params[:post])
+      flash[:success] = "Post updated"
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
 end

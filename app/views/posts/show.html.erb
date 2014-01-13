@@ -16,7 +16,7 @@
     </h3>
     <h4>
       <span class="content">
-        <%= simple_format(wrap(@post.content)) %>
+        <%= simple_format((@post.content)) %>
       </span>
     </h4>
   </li>
@@ -32,6 +32,10 @@
 <div class="timestamps">
   Posted <%= @post.created_at %>
 </div>
+
+<% if signed_in? && current_user.id==@post.user_id && ((Time.now-@post.created_at)<=1200)%>
+  <%= link_to "edit", edit_post_path %>
+<% end %>
 
 <% if @post.comments.count!=0 %>
   <h2>Comments</h2>
